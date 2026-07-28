@@ -17,6 +17,7 @@
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
         <a href="#games">Games</a>
       </nav>
     </header>
@@ -84,14 +85,45 @@
         <p>Android 애플리케이션 개발을 바탕으로 검색 품질과 개인 데이터 경험을 고민합니다. 상세 기술 스택은 확인된 자료가 준비되면 업데이트합니다. <span class="needs-review">[사람 확인 필요]</span></p>
       </section>
 
+      <section id="contact" class="content-section" aria-labelledby="contact-title">
+        <p class="section-label">05 / CONTACT</p>
+        <h2 id="contact-title">다음 스테이지에서 만나요</h2>
+        <p>개발과 프로젝트 이야기는 GitHub에서 이어갑니다.</p>
+        <a class="pixel-button" href="https://github.com/gogoconi" rel="noreferrer">GITHUB @GOGOCONI <span aria-hidden="true">↗</span></a>
+      </section>
+
       <section id="games" class="game-section" aria-labelledby="games-title">
-        <p class="section-label">05 / GAMES</p>
+        <p class="section-label">06 / GAMES</p>
         <h2 id="games-title">goconi's arcade</h2>
-        <div class="game-placeholder" role="status">
-          <span class="pixel-star" aria-hidden="true">✦</span>
-          <p>지렁이 게임 준비 중</p>
-          <small>다음 루프에서 키보드·터치 조작을 추가합니다.</small>
-          <div class="mini-sprite" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+        <div class="game-shell" data-game="goconi-snake">
+          <div class="game-topbar">
+            <span>GOCONI QUEST</span>
+            <span id="game-status" role="status">READY</span>
+          </div>
+          <div class="game-stats" aria-live="polite">
+            <span>SCORE <strong id="score">0</strong></span>
+            <span>BEST <strong id="high-score">0</strong></span>
+            <span>HP <strong id="health">100</strong></span>
+          </div>
+          <div class="game-board-wrap">
+            <canvas id="game-canvas" width="480" height="320" aria-label="goconi 지렁이 게임 화면"></canvas>
+            <div id="game-message" class="game-message">START를 눌러 모험 시작!</div>
+          </div>
+          <div class="game-actions">
+            <button id="start-game" class="game-button" type="button">START</button>
+            <button id="pause-game" class="game-button" type="button" disabled>PAUSE</button>
+            <button id="restart-game" class="game-button" type="button">RESTART</button>
+          </div>
+          <div class="game-controls" aria-label="게임 조작">
+            <div class="d-pad">
+              <button type="button" data-direction="up" aria-label="위로 이동">▲</button>
+              <button type="button" data-direction="left" aria-label="왼쪽 이동">◀</button>
+              <button type="button" data-direction="down" aria-label="아래로 이동">▼</button>
+              <button type="button" data-direction="right" aria-label="오른쪽 이동">▶</button>
+            </div>
+            <button id="fire-game" class="fire-button" type="button" aria-label="포탄 발사">✹ FIRE</button>
+          </div>
+          <p class="game-help">ARROW / WASD 이동 · SPACE 포탄 · P 일시정지</p>
         </div>
       </section>
     </main>
@@ -100,5 +132,6 @@
       <p>© <span id="current-year">2026</span> goconi</p>
       <a href="https://github.com/gogoconi" rel="noreferrer">GitHub @gogoconi</a>
     </footer>
+    <script src="game.js" defer></script>
   </body>
 </html>
