@@ -69,6 +69,7 @@
     snake = [{ x: 8, y: 8 }, { x: 7, y: 8 }, { x: 6, y: 8 }];
     direction = 'right';
     queuedDirection = 'right';
+    enemies = [];
     food = freeCell();
     items = [];
     enemies = [makeEnemy(), makeEnemy()];
