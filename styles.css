@@ -64,9 +64,9 @@ h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
 .game-message { background: rgba(13, 22, 48, .86); border: 3px solid var(--yellow); color: #fff; font-size: clamp(.75rem, 2vw, 1rem); font-weight: 900; left: 50%; padding: .65rem 1rem; position: absolute; text-align: center; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; }
 .game-message.is-hidden { display: none; }
 .game-actions { display: flex; gap: .6rem; justify-content: center; padding: 1rem 0 .5rem; }
-.game-button, .d-pad button, .fire-button { background: var(--yellow); border: 3px solid var(--ink); box-shadow: 3px 3px 0 #000; color: var(--ink); cursor: pointer; font: inherit; font-size: .72rem; font-weight: 900; padding: .55rem .75rem; }
+.game-button, .d-pad button { background: var(--yellow); border: 3px solid var(--ink); box-shadow: 3px 3px 0 #000; color: var(--ink); cursor: pointer; font: inherit; font-size: .72rem; font-weight: 900; padding: .55rem .75rem; }
 .game-button:disabled { cursor: not-allowed; opacity: .45; }
-.game-button:active, .d-pad button:active, .fire-button:active { box-shadow: 1px 1px 0 #000; transform: translate(2px, 2px); }
+.game-button:active, .d-pad button:active { box-shadow: 1px 1px 0 #000; transform: translate(2px, 2px); }
 .game-controls { align-items: center; display: flex; justify-content: space-between; margin: 0 auto; max-width: 300px; padding-top: .5rem; }
 .d-pad { display: grid; gap: 4px; grid-template-columns: repeat(3, 38px); grid-template-rows: repeat(2, 34px); }
 .d-pad button { padding: 0; }
@@ -74,7 +74,6 @@ h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
 .d-pad button[data-direction="left"] { grid-column: 1; grid-row: 2; }
 .d-pad button[data-direction="down"] { grid-column: 2; grid-row: 2; }
 .d-pad button[data-direction="right"] { grid-column: 3; grid-row: 2; }
-.fire-button { background: var(--pink); color: #fff; }
 .game-help { color: #b9d5ff; font-size: .68rem; margin: 1rem 0 0; text-align: center; }
 .pixel-star { color: var(--yellow); font-size: 2rem; }
 .game-placeholder p { font-size: 1.5rem; font-weight: 900; margin: .5rem 0; }
@@ -85,12 +84,6 @@ h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
 /* Original cute pixel-art scene for goconi. */
 .hero-art { align-self: stretch; min-height: 360px; position: relative; }
 .hero-ground { background: var(--mint); border: 4px solid var(--ink); bottom: 18px; height: 36px; left: 5%; position: absolute; right: 5%; box-shadow: inset 0 -9px 0 #51b49f; }
-.cloud { background: #fff; border: 4px solid var(--ink); height: 24px; position: absolute; width: 78px; }
-.cloud::before, .cloud::after { background: #fff; border: 4px solid var(--ink); content: ""; height: 28px; position: absolute; width: 28px; }
-.cloud::before { left: 10px; top: -20px; }
-.cloud::after { right: 8px; top: -13px; }
-.cloud-one { right: 5%; top: 16%; }
-.cloud-two { left: 2%; top: 32%; transform: scale(.7); }
 .coin { color: var(--ink); font-size: 1.5rem; font-weight: 900; height: 34px; line-height: 28px; position: absolute; text-align: center; width: 25px; z-index: 1; }
 .coin::before { background: var(--yellow); border: 4px solid var(--ink); content: ""; inset: 0; position: absolute; z-index: -1; }
 .coin-one { right: 26%; top: 8%; }
@@ -113,6 +106,15 @@ h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
 .sprite-leg { background: var(--yellow); border: 4px solid var(--ink); bottom: 0; height: 24px; width: 28px; }
 .leg-left { left: 18px; }
 .leg-right { right: 18px; }
+.pixel-cloud { height: auto; image-rendering: pixelated; object-fit: contain; position: absolute; width: 110px; }
+.cloud-one { right: 5%; top: 16%; }
+.cloud-two { left: 2%; top: 32%; transform: scale(.72); }
+.character-art { display: block; image-rendering: pixelated; object-fit: contain; }
+.character-standing { bottom: 45px; height: 330px; left: 50%; max-width: 78%; position: absolute; transform: translateX(-50%); }
+.about-character-card { align-items: center; background: #d9f0ff; border: 4px solid var(--ink); box-shadow: 7px 7px 0 var(--pink); display: flex; gap: 1.5rem; margin-top: 2rem; max-width: 680px; padding: 1rem; }
+.character-coding { height: 220px; max-width: 45%; }
+.skill-list { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; max-width: 700px; }
+.skill-list span { background: var(--yellow); border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); font-size: .75rem; font-weight: 900; padding: .4rem .55rem; }
 .mini-sprite { display: flex; gap: 0; margin-top: 1.5rem; transform: scale(1.2); }
 .mini-sprite span { background: var(--yellow); border: 3px solid var(--ink); height: 16px; width: 16px; }
 .mini-sprite span:nth-child(2) { background: var(--pink); }
@@ -122,6 +124,10 @@ h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
 @media (max-width: 640px) {
   .hero { display: block; padding-top: 3rem; }
   .hero-art { min-height: 320px; }
+  .character-standing { height: 270px; }
+  .pixel-cloud { width: 80px; }
+  .about-character-card { align-items: flex-start; flex-direction: column; }
+  .character-coding { height: 180px; max-width: 100%; }
   .hero-copy-wrap { margin-bottom: 2rem; }
   .project-grid { grid-template-columns: 1fr; }
   .game-actions { flex-wrap: wrap; }

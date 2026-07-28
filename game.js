@@ -11,12 +11,11 @@
   const startButton = document.querySelector('#start-game');
   const pauseButton = document.querySelector('#pause-game');
   const restartButton = document.querySelector('#restart-game');
-  const fireButton = document.querySelector('#fire-game');
 
   const CELL = 20;
   const COLS = canvas.width / CELL;
   const ROWS = canvas.height / CELL;
-  const DAMAGE = { enemy: 10, projectile: 5, mine: 10, playerShot: 2 };
+  const DAMAGE = { enemy: 10, projectile: 5, mine: 10 };
   const DIRECTIONS = {
     up: { x: 0, y: -1 }, down: { x: 0, y: 1 }, left: { x: -1, y: 0 }, right: { x: 1, y: 0 },
   };
@@ -28,7 +27,6 @@
   let items;
   let enemies;
   let projectiles;
-  let playerShots;
   let score;
   let health;
   let timerId = null;
@@ -74,7 +72,6 @@
     items = [];
     enemies = [makeEnemy(), makeEnemy()];
     projectiles = [];
-    playerShots = [];
     score = 0;
     health = 100;
     tickCount = 0;
@@ -114,10 +111,6 @@
     health -= amount;
     if (health <= 0) gameOver(reason);
   };
-  const fire = () => {
-    if (!running || paused) return;
-    playerShots.push({ x: snake[0].x, y: snake[0].y, direction, damage: DAMAGE.playerShot });
-  };
   const maybeSpawnItem = () => {
     if (items.length < 2 && Math.random() < 0.08) items.push({ ...freeCell(), type: Math.random() < 0.6 ? 'potion' : 'mine' });
   };
@@ -153,20 +146,10 @@
     snake.unshift(head);
     if (same(head, food)) { score += 10; food = freeCell(); } else snake.pop();
     enemies.forEach(moveEnemy);
-    playerShots.forEach(moveShot);
     projectiles.forEach(moveShot);
-    playerShots = playerShots.filter((shot) => shot.x >= 0 && shot.x < COLS && shot.y >= 0 && shot.y < ROWS);
     projectiles = projectiles.filter((shot) => shot.x >= 0 && shot.x < COLS && shot.y >= 0 && shot.y < ROWS);
     enemies.forEach((enemy) => { if (same(enemy, head)) hit(DAMAGE.enemy, '적과 충돌'); });
     projectiles = projectiles.filter((shot) => { if (same(shot, head)) { hit(DAMAGE.projectile, '포탄 피격'); return false; } return true; });
-    playerShots = playerShots.filter((shot) => {
-      const target = enemies.find((enemy) => same(enemy, shot));
-      if (!target) return true;
-      target.flash = 2;
-      target.hp = (target.hp || 10) - shot.damage;
-      if (target.hp <= 0) { score += 25; enemies.splice(enemies.indexOf(target), 1, makeEnemy()); }
-      return false;
-    });
     items = items.filter((item) => {
       if (!same(item, head)) return true;
       if (item.type === 'potion') health = Math.min(100, health + 10);
@@ -190,19 +173,16 @@
     items.forEach((item) => block(item.x, item.y, item.type === 'potion' ? '#80d6c3' : '#f45b69', 3));
     enemies.forEach((enemy) => block(enemy.x, enemy.y, '#d94b57', 2));
     projectiles.forEach((shot) => block(shot.x, shot.y, '#ff9f1c', 5));
-    playerShots.forEach((shot) => block(shot.x, shot.y, '#fff', 5));
     snake.forEach((part, index) => block(part.x, part.y, index === 0 ? '#ffd166' : '#3178d6', 2));
   };
   document.addEventListener('keydown', (event) => {
     const keyMap = { ArrowUp: 'up', w: 'up', W: 'up', ArrowDown: 'down', s: 'down', S: 'down', ArrowLeft: 'left', a: 'left', A: 'left', ArrowRight: 'right', d: 'right', D: 'right' };
     if (keyMap[event.key]) { event.preventDefault(); setDirection(keyMap[event.key]); }
-    if (event.key === ' ') { event.preventDefault(); fire(); }
     if (event.key === 'p' || event.key === 'P') pause();
   });
   document.querySelectorAll('[data-direction]').forEach((button) => button.addEventListener('click', () => setDirection(button.dataset.direction)));
   startButton.addEventListener('click', start);
   pauseButton.addEventListener('click', pause);
   restartButton.addEventListener('click', () => { if (timerId !== null) { window.clearInterval(timerId); timerId = null; } running = false; reset(); start(); });
-  fireButton.addEventListener('click', fire);
   reset();
 })();

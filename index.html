@@ -30,17 +30,10 @@
           <p class="hero-copy">삼성전자 MX 사업부에서 애플리케이션 개발을 시작한 안드로이드 개발자입니다.</p>
           <a class="pixel-button" href="#games">START GAME <span aria-hidden="true">▶</span></a>
         </div>
-        <div class="hero-art" aria-label="별과 코인 사이에 서 있는 픽셀 캐릭터 goconi">
-          <span class="cloud cloud-one" aria-hidden="true"></span>
-          <span class="cloud cloud-two" aria-hidden="true"></span>
-          <span class="coin coin-one" aria-hidden="true">$</span>
-          <span class="coin coin-two" aria-hidden="true">$</span>
-          <span class="pixel-heart" aria-hidden="true">♥</span>
-          <div class="goconi-sprite" aria-hidden="true">
-            <span class="sprite-hat"></span><span class="sprite-face"></span><span class="sprite-body"></span>
-            <span class="sprite-arm arm-left"></span><span class="sprite-arm arm-right"></span>
-            <span class="sprite-leg leg-left"></span><span class="sprite-leg leg-right"></span>
-          </div>
+        <div class="hero-art" aria-label="구름 사이에 서 있는 goconi 캐릭터">
+          <img class="pixel-cloud cloud-one" src="assets/cloud.png" alt="">
+          <img class="pixel-cloud cloud-two" src="assets/cloud.png" alt="">
+          <img class="character-art character-standing" src="assets/goconi-standing.png" alt="서 있는 goconi 캐릭터">
           <div class="speech-bubble">HELLO!<br><small>I'M GOCONI</small></div>
           <div class="hero-ground" aria-hidden="true"></div>
         </div>
@@ -50,6 +43,10 @@
         <p class="section-label">01 / ABOUT</p>
         <h2 id="about-title">만드는 사람, goconi</h2>
         <p>모바일 제품의 흐름을 이해하고, 사용자가 직접 만지는 순간까지 고민합니다.</p>
+        <div class="about-character-card">
+          <img class="character-art character-coding" src="assets/goconi-coding.png" alt="노트북으로 코딩하고 있는 goconi 캐릭터">
+          <p><strong>BUILD MODE</strong><br>아이디어를 코드로 옮기고, 작은 디테일까지 다듬습니다.</p>
+        </div>
       </section>
 
       <section id="experience" class="content-section" aria-labelledby="experience-title">
@@ -82,7 +79,8 @@
       <section id="skills" class="content-section" aria-labelledby="skills-title">
         <p class="section-label">04 / SKILLS</p>
         <h2 id="skills-title">문제를 구조화하는 기술</h2>
-        <p>Android 애플리케이션 개발을 바탕으로 검색 품질과 개인 데이터 경험을 고민합니다. 상세 기술 스택은 확인된 자료가 준비되면 업데이트합니다. <span class="needs-review">[사람 확인 필요]</span></p>
+        <p>Android 애플리케이션 개발을 바탕으로 검색 품질과 개인 데이터 경험을 고민합니다.</p>
+        <div class="skill-list" aria-label="기술 스킬"><span>Android</span><span>Kotlin</span><span>Lucene</span><span>Codex</span><span>Claude</span><span>Room DB</span><span>Compose</span><span>Java</span><span>SQL</span></div>
       </section>
 
       <section id="contact" class="content-section" aria-labelledby="contact-title">
@@ -121,9 +119,8 @@
               <button type="button" data-direction="down" aria-label="아래로 이동">▼</button>
               <button type="button" data-direction="right" aria-label="오른쪽 이동">▶</button>
             </div>
-            <button id="fire-game" class="fire-button" type="button" aria-label="포탄 발사">✹ FIRE</button>
           </div>
-          <p class="game-help">ARROW / WASD 이동 · SPACE 포탄 · P 일시정지</p>
+          <p class="game-help">ARROW / WASD 이동 · P 일시정지</p>
         </div>
       </section>
     </main>
